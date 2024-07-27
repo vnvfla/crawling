@@ -48,15 +48,8 @@ login_btn = driver.find_element(By.CSS_SELECTOR, '#fs_login')
 login_btn.click()
 time.sleep(2)
 
-# driver.find_element(By.ID, 'fs_all_menu').click()
-# time.sleep(2)
-
 # 오늘의 메뉴 페이지 이동
 driver.get('https://front.cjfreshmeal.co.kr/menu/today')
-# driver.find_element(By.CSS_SELECTOR, '#app > section > nav > div.nav-inner > div.menu-wrap > ul > li:nth-child(2) > ul > li:nth-child(2) > a > span').click()
-# driver.find_element_by_xpath('//*[@id="fs_all_menu"]/svg').click()
-# driver.find_element_by_xpath('//*[@id="app"]/section/nav/div[2]/div[4]/ul/li[2]/ul/li[2]/a/span').click()
-
 
 # 메뉴 정보 출력
 menu_view = driver.find_element(By.XPATH, '//*[@id="app"]/section/div[1]/div/div/div')
