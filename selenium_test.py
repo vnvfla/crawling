@@ -1,16 +1,15 @@
 from selenium import webdriver
 from selenium.webdriver.chrome.service import Service
 from selenium.webdriver.chrome.options import Options
-
 from selenium.webdriver.support.ui import WebDriverWait as wait
-
 from webdriver_manager.chrome import ChromeDriverManager
-
 from selenium.webdriver.common.by import By
 
 import time
 import pyautogui
 import pyperclip
+import telegram
+import schedule
 
 # 브라우저 꺼짐 방지
 chrome_options = Options()
@@ -22,6 +21,11 @@ chrome_options.add_experimental_option("excludeSwitches", ["enable-logging"])
 # Chrome driver Manager를 통해 크롬 드라이버 자동 설치
 service = Service(excutable_path=ChromeDriverManager().install()) 
 driver = webdriver.Chrome(service=service, options = chrome_options)
+
+# 텔레그램봇 설정
+bot_token = 'bot_token'
+bot = telegram.Bot(token=bot_token)
+chat_id = 'chat_id'
 
 # 프레시밀 로그인 페이지 접속
 url = 'https://front.cjfreshmeal.co.kr/login?redirectUrl=/mypage'
