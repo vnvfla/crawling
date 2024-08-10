@@ -60,7 +60,10 @@ menu_select = driver.find_element(By.CSS_SELECTOR, '#app > section > div.content
 menu_select.click()                                 
 time.sleep(1)
 
-menu_view = driver.find_element(By.XPATH, '//*[@id="app"]/section/div[1]/div/div/ul/li[1]/div/a/dl/dt/span')
+# 메뉴추출
+menu_main = driver.find_element(By.XPATH, '//*[@id="app"]/section/div[1]/div/div/ul/li[1]/div/a/dl/dt/span')
+menu_sub = driver.find_element(By.XPATH, '//*[@id="app"]/section/div[1]/div/div/ul/li[1]/div/a/dl/dd')
+
 # style에 있는 이미지 경로 추출
 menu_image_tag = driver.find_element(By.CSS_SELECTOR, '#app > section > div.content > div > div> ul > li:nth-child(1) > div > a > span > div').get_attribute('style')
 if menu_image_tag:
@@ -68,12 +71,14 @@ if menu_image_tag:
 else:
     menu_image = ''
 
-print(menu_view.text)
+print(menu_main.text)
 
 time.sleep(2)
 
-# 텔레그램 메시지 전송
-asyncio.run(bot.sendMessage(chat_id = chat_id, text = menu_view.text + '\n' + menu_image))
+# 텔레그램 메시지 전송(비동기전송)
+asyncio.run(bot.sendMessage(chat_id = chat_id, text = menu_main.text + '\n' + menu_sub.text + '\n' +menu_image))
+
+# schedule.every().monday.at("10:30").do(job)
 
 # 브라우저 종료
 driver.quit()
